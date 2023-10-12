@@ -1,0 +1,10 @@
+legacy-semver-padding: 1
+build-metadata-padding: 1
+commits-since-version-source-padding: 1
+next-version: 1.0
+branches:
+  main:
+    source-branches: [ 'develop' ]
+    is-release-branch: true
+  develop:
+    tag: beta
