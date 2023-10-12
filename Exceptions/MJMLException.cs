@@ -11,6 +11,7 @@ public class MJMLException : ApplicationException
     /// <summary>
     ///     Initialize a <see cref="MJMLException" />
     /// </summary>
+    /// <param name="errors">An MJML provided <see cref="ValidationErrors"/></param>
     public MJMLException(ValidationErrors errors) : base(errors[0].Error)
     {
         Messages = new List<string>();
