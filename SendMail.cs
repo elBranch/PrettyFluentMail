@@ -12,9 +12,9 @@ public class SendMail : SmtpClient
     /// <summary>
     ///     Initializes a <see cref="SendMail" /> client
     /// </summary>
-    /// <param name="settings">Settings configured with <see cref="SmtpClientSettings" /></param>
+    /// <param name="settings">Settings configured with <see cref="SmtpOptions" /></param>
     /// <exception cref="ArgumentNullException">Thrown in the event a mail server is not provided</exception>
-    public SendMail(SmtpClientSettings settings)
+    public SendMail(SmtpOptions settings)
     {
         Host = settings.Host ?? throw new ArgumentNullException(nameof(settings), "No mail server provided");
         var username = settings.Username ?? string.Empty;

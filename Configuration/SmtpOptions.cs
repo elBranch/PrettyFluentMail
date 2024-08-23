@@ -1,32 +1,32 @@
 ﻿namespace PrettyFluentMail.Configuration;
 
 /// <summary>
-///     SMTP settings for the library
+///     Connection parameters for SMTP server.
 /// </summary>
-public class SmtpClientSettings
+public class SmtpOptions
 {
     /// <summary>
-    ///     Host name of your mail server
+    ///     Host name of mail server.
     /// </summary>
-    public string? Host { get; set; }
+    public required string Host { get; set; }
 
     /// <summary>
-    ///     Port number of your mail server, defaults to 25
+    ///     Port number of mail server; defaults to 25.
     /// </summary>
     public int Port { get; set; } = 25;
 
     /// <summary>
-    ///     Enable SSL for the mail server, defaults to false
+    ///     Enable SSL for the mail server; defaults to false.
     /// </summary>
     public bool EnableSsl { get; set; } = false;
 
     /// <summary>
-    ///     Username to login to mail server
+    ///     Username for mail server authentication.
     /// </summary>
     public string? Username { get; set; }
 
     /// <summary>
-    ///     Password to login to mail server
+    ///     Password for mail server authentication.
     /// </summary>
     public string? Password { get; set; }
 }
