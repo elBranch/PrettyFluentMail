@@ -3,15 +3,15 @@
 namespace PrettyFluentMail.Exceptions;
 
 /// <summary>
-///     An error occurred while parsing an MJML template
+///     Represents an exception that is thrown when an error occurs while parsing an MJML template.
 /// </summary>
 [Serializable]
 public class MJMLException : ApplicationException
 {
     /// <summary>
-    ///     Initialize a <see cref="MJMLException" />
+    ///     Initializes a new instance of the <see cref="MJMLException"/> class with the specified MJML validation errors.
     /// </summary>
-    /// <param name="errors">An MJML provided <see cref="ValidationErrors"/></param>
+    /// <param name="errors">A collection of MJML <see cref="ValidationErrors"/> that describe the parsing errors.</param>
     public MJMLException(ValidationErrors errors) : base(errors[0].Error)
     {
         Messages = new List<string>();
@@ -33,22 +33,23 @@ public class MJMLException : ApplicationException
     }
 
     /// <summary>
-    ///     Error messages received from MJML library
+    ///     Gets the error messages received from the MJML library.
     /// </summary>
     public List<string> Messages { get; }
 
     /// <summary>
-    ///     Error types received from MJML library
+    ///     Gets the error types received from the MJML library.
     /// </summary>
     public List<string> ErrorTypes { get; }
 
     /// <summary>
-    ///     Files impacted by errors received by MJML library
+    ///     Gets the files impacted by errors received from the MJML library.
     /// </summary>
     public List<string?> Files { get; }
 
     /// <summary>
-    ///     Positions of errors received by MJML library
+    ///     Gets the positions of errors received from the MJML library.
+    ///     Each dictionary contains line number and line position information.
     /// </summary>
     public List<Dictionary<string, int>> Positions { get; }
 }

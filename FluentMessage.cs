@@ -7,19 +7,20 @@ using Scriban;
 namespace PrettyFluentMail;
 
 /// <summary>
-///     Attributes of a mail message
+///     Attributes of a mail message and fluent methods for building an email.
 /// </summary>
 public class FluentMessage
 {
+    // The underlying MailMessage instance used to construct the email.
     private readonly MailMessage _message = new() {BodyEncoding = Encoding.UTF8};
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.From" />
+    ///     Sets the sender's address of the email.
     /// </summary>
     /// <param name="address">
-    ///     Email address
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Email address in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage From(string address)
     {
         _message.From = new MailAddress(address);
@@ -27,12 +28,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.Sender" />
+    ///     Sets the sender (envelope sender) of the email.
     /// </summary>
     /// <param name="address">
-    ///     Email address
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Email address in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage Sender(string address)
     {
         _message.Sender = new MailAddress(address);
@@ -40,12 +41,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.To" />
+    ///     Adds a recipient to the "To" field.
     /// </summary>
     /// <param name="address">
-    ///     Email address
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Email address in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage To(string address)
     {
         _message.To.Add(address);
@@ -53,12 +54,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.To" />
+    ///     Adds multiple recipients to the "To" field.
     /// </summary>
     /// <param name="addresses">
-    ///     Enumerable of addresses
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Enumerable of email addresses in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage To(IEnumerable<string> addresses)
     {
         foreach (var address in addresses) _message.To.Add(address);
@@ -66,12 +67,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.CC" />
+    ///     Adds a recipient to the "CC" field.
     /// </summary>
     /// <param name="address">
-    ///     Email address
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Email address in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage Cc(string address)
     {
         _message.CC.Add(address);
@@ -79,12 +80,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.CC" />
+    ///     Adds multiple recipients to the "CC" field.
     /// </summary>
     /// <param name="addresses">
-    ///     Enumerable of addresses
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Enumerable of email addresses in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage Cc(IEnumerable<string> addresses)
     {
         foreach (var address in addresses) _message.CC.Add(address);
@@ -92,12 +93,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.CC" />
+    ///     Adds a recipient to the "BCC" field.
     /// </summary>
     /// <param name="address">
-    ///     Email address
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Email address in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage Bcc(string address)
     {
         _message.Bcc.Add(address);
@@ -105,12 +106,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.Bcc" />
+    ///     Adds multiple recipients to the "BCC" field.
     /// </summary>
     /// <param name="addresses">
-    ///     Enumerable of addresses
-    ///     <example>Name &lt;name@contosso.com&gt;</example>
+    ///     Enumerable of email addresses in the format "Name &lt;name@contosso.com&gt;".
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage Bcc(IEnumerable<string> addresses)
     {
         foreach (var address in addresses) _message.Bcc.Add(address);
@@ -118,9 +119,10 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.Subject" />
+    ///     Sets the subject of the email message.
     /// </summary>
-    /// <param name="subject">Subject of email message</param>
+    /// <param name="subject">Subject of the email message.</param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage WithSubject(string subject)
     {
         _message.Subject = subject;
@@ -128,11 +130,12 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     Sets a text based body on the email message
+    ///     Sets a plain text body for the email message.
     /// </summary>
     /// <param name="body">
-    ///     <inheritdoc cref="MailMessage.Body" />
+    ///     The plain text content of the email body.
     /// </param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage UsingText(string body)
     {
         _message.IsBodyHtml = false;
@@ -141,10 +144,13 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     Uses an MJML template with the Scriban template engine to generate an HTML message
+    ///     Uses an MJML template with the Scriban template engine to generate an HTML email body.
     /// </summary>
-    /// <param name="templatePath">Full path to MJML file</param>
-    /// <param name="variables">An object containing properties whose values will be used by Scriban</param>
+    /// <param name="templatePath">Full path to the MJML template file.</param>
+    /// <param name="variables">An object containing properties for template variable substitution.</param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
+    /// <exception cref="ScribanException">Thrown if there are errors in the Scriban template.</exception>
+    /// <exception cref="MJMLException">Thrown if there are errors in the MJML rendering.</exception>
     public FluentMessage UsingTemplate(string templatePath, object? variables = null)
     {
         string templateContent;
@@ -176,9 +182,10 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     <inheritdoc cref="MailMessage.Attachments" />
+    ///     Adds a file attachment to the email message.
     /// </summary>
-    /// <param name="filePath">Path to file</param>
+    /// <param name="filePath">Path to the file to attach.</param>
+    /// <returns>The current <see cref="FluentMessage"/> instance.</returns>
     public FluentMessage AddAttachment(string filePath)
     {
         _message.Attachments.Add(new Attachment(filePath));
@@ -186,9 +193,9 @@ public class FluentMessage
     }
 
     /// <summary>
-    ///     Returns the built MailMessage
+    ///     Returns the constructed <see cref="MailMessage"/> instance.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The built <see cref="MailMessage"/> object.</returns>
     public MailMessage Build()
     {
         return _message;

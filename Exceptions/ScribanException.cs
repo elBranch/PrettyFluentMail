@@ -3,15 +3,15 @@
 namespace PrettyFluentMail.Exceptions;
 
 /// <summary>
-///     Error occurred while processing a Scriban template
+///     Represents an exception that is thrown when an error occurs while processing a Scriban template.
 /// </summary>
 [Serializable]
 public class ScribanException : ApplicationException
 {
     /// <summary>
-    ///     Initialize a <see cref="ScribanException" /> exception
+    ///     Initializes a new instance of the <see cref="ScribanException"/> class with the specified Scriban log message.
     /// </summary>
-    /// <param name="message">A Scriban provided <see cref="LogMessage" /></param>
+    /// <param name="message">A Scriban provided <see cref="LogMessage"/> containing error details.</param>
     public ScribanException(LogMessage message) :
         base(message.Message)
     {
@@ -36,27 +36,27 @@ public class ScribanException : ApplicationException
     }
 
     /// <summary>
-    ///     True if template is empty
+    ///     Gets a value indicating whether the template is empty.
     /// </summary>
     public bool IsEmpty { get; }
 
     /// <summary>
-    ///     File name of the impacted file
+    ///     Gets the file name of the impacted file.
     /// </summary>
     public string FileName { get; }
 
     /// <summary>
-    ///     Start positions of the errors
+    ///     Gets the start positions of the error, including column, line, and offset.
     /// </summary>
     public Dictionary<string, int> Start { get; }
 
     /// <summary>
-    ///     End positions of the errors
+    ///     Gets the end positions of the error, including column, line, and offset.
     /// </summary>
     public Dictionary<string, int> End { get; }
 
     /// <summary>
-    ///     Length of the string
+    ///     Gets the length of the error span in the template.
     /// </summary>
     public int Length { get; }
 }
