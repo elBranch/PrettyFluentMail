@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34414.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrettyFluentMail", "PrettyFluentMail.csproj", "{66D645C3-120F-48D4-A037-2538A746E2AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrettyFluentMail", "PrettyFluentMail\PrettyFluentMail.csproj", "{66D645C3-120F-48D4-A037-2538A746E2AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettyFluentMail.AspNetCore", "PrettyFluentMail.AspNetCore\PrettyFluentMail.AspNetCore.csproj", "{AFA39999-52AF-49A2-B8E5-B8E8A5A5E33A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{66D645C3-120F-48D4-A037-2538A746E2AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66D645C3-120F-48D4-A037-2538A746E2AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66D645C3-120F-48D4-A037-2538A746E2AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA39999-52AF-49A2-B8E5-B8E8A5A5E33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA39999-52AF-49A2-B8E5-B8E8A5A5E33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA39999-52AF-49A2-B8E5-B8E8A5A5E33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA39999-52AF-49A2-B8E5-B8E8A5A5E33A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
