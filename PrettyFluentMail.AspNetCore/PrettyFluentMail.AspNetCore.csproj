@@ -1,39 +1,19 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <GenerateDocumentationFile>True</GenerateDocumentationFile>
-        <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
-    </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>PrettyFluentMail.AspNetCore</PackageId>
+    <Title>PrettyFluentMail for ASP.NET Core</Title>
+    <Description>Dependency injection support for PrettyFluentMail in ASP.NET Core and generic host applications.</Description>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <PackageId>PrettyFluentMail.AspNetCore</PackageId>
-        <Title>PrettyFluentMail for AspNetCore</Title>
-        <Authors>elBranch</Authors>
-        <Description>Adds dependency injection support for PrettyFluentMail in ASP.NET Core applications.</Description>
-        <Copyright>elBranch</Copyright>
-        <PackageProjectUrl>https://github.com/elBranch/PrettyFluentMail</PackageProjectUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <RepositoryUrl>https://github.com/elBranch/PrettyFluentMail.git</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>mail, template, email, fluent</PackageTags>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrettyFluentMail\PrettyFluentMail.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\PrettyFluentMail\PrettyFluentMail.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="\" />
-        <None Include="LICENSE.txt" Pack="true" PackagePath="\" />
-    </ItemGroup>
-
-    <ItemGroup>
-	    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.13" />
-	    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.13" />
-		<PackageReference Update="Nerdbank.GitVersioning" Version="3.10.94" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
 
 </Project>
