@@ -6,8 +6,8 @@ namespace PrettyFluentMail.Configuration;
 public enum SmtpSecurity
 {
     /// <summary>
-    ///     Connects in plain text, then upgrades with STARTTLS. The connection fails if the server does not
-    ///     offer STARTTLS. This is the default and is normally used with port 587.
+    ///     Connects in plain text, then upgrades with STARTTLS. The connection fails if the server does not offer STARTTLS.
+    ///     This is the default and is normally used with port 587.
     /// </summary>
     StartTls = 0,
 
@@ -17,14 +17,14 @@ public enum SmtpSecurity
     SslOnConnect = 1,
 
     /// <summary>
-    ///     Upgrades with STARTTLS when the server offers it, otherwise continues <b>unencrypted</b>.
-    ///     Credentials and message content can be sent in clear text. Intended for trusted internal networks only.
+    ///     Upgrades with STARTTLS when the server offers it, otherwise continues <b>unencrypted</b>. Credentials and message
+    ///     content can be sent in clear text. Intended for trusted internal networks only.
     /// </summary>
     StartTlsWhenAvailable = 2,
 
     /// <summary>
-    ///     Never uses TLS. Credentials and message content are sent in clear text.
-    ///     Intended for trusted internal networks only.
+    ///     Never uses TLS. Credentials and message content are sent in clear text. Intended for trusted internal networks
+    ///     only.
     /// </summary>
     None = 3
 }

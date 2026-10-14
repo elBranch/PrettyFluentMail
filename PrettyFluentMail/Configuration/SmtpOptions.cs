@@ -1,8 +1,8 @@
 namespace PrettyFluentMail.Configuration;
 
 /// <summary>
-///     The connection parameters required to send mail through an SMTP server.
-///     The defaults are secure: STARTTLS is required and certificates are fully validated.
+///     The connection parameters required to send mail through an SMTP server. The defaults are secure: STARTTLS is
+///     required and certificates are fully validated.
 /// </summary>
 public sealed class SmtpOptions
 {
@@ -12,27 +12,27 @@ public sealed class SmtpOptions
     public required string Host { get; set; }
 
     /// <summary>
-    ///     Gets or sets the port number of the mail server. The default is 587 (submission).
-    ///     Use 465 with <see cref="SmtpSecurity.SslOnConnect" />.
+    ///     Gets or sets the port number of the mail server. The default is 587 (submission). Use 465 with
+    ///     <see cref="SmtpSecurity.SslOnConnect" />.
     /// </summary>
     public int Port { get; set; } = 587;
 
     /// <summary>
-    ///     Gets or sets how the connection is secured. The default is <see cref="SmtpSecurity.StartTls" />.
-    ///     Set <see cref="SmtpSecurity.StartTlsWhenAvailable" /> or <see cref="SmtpSecurity.None" /> to opt in to
-    ///     an unencrypted connection.
+    ///     Gets or sets how the connection is secured. The default is <see cref="SmtpSecurity.StartTls" />. Set
+    ///     <see cref="SmtpSecurity.StartTlsWhenAvailable" /> or <see cref="SmtpSecurity.None" /> to opt in to an unencrypted
+    ///     connection.
     /// </summary>
     public SmtpSecurity Security { get; set; } = SmtpSecurity.StartTls;
 
     /// <summary>
-    ///     Gets or sets the user name used for authentication. Leave <see langword="null" /> when the
-    ///     server does not require authentication.
+    ///     Gets or sets the user name used for authentication. Leave <see langword="null" /> when the server does not require
+    ///     authentication.
     /// </summary>
     public string? Username { get; set; }
 
     /// <summary>
-    ///     Gets or sets the password used for authentication. Never commit this value to source control;
-    ///     prefer user secrets, environment variables or a secret store.
+    ///     Gets or sets the password used for authentication. Never commit this value to source control; prefer user secrets,
+    ///     environment variables or a secret store.
     /// </summary>
     public string? Password { get; set; }
 
@@ -48,9 +48,9 @@ public sealed class SmtpOptions
     public bool CheckCertificateRevocation { get; set; } = true;
 
     /// <summary>
-    ///     Gets or sets a value indicating whether any server certificate is accepted, including self-signed,
-    ///     expired or mismatched ones. The default is <see langword="false" />. Enabling this removes protection
-    ///     against man-in-the-middle attacks; use it only on trusted internal networks.
+    ///     Gets or sets a value indicating whether any server certificate is accepted, including self-signed, expired or
+    ///     mismatched ones. The default is <see langword="false" />. Enabling this removes protection against
+    ///     man-in-the-middle attacks; use it only on trusted internal networks.
     /// </summary>
     public bool AllowUntrustedCertificates { get; set; }
 

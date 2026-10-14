@@ -12,41 +12,43 @@ namespace Microsoft.Extensions.DependencyInjection;
 /// </summary>
 public static class PrettyFluentMailServiceCollectionExtensions
 {
-    /// <summary>
-    ///     Registers <see cref="IMailSender" /> using <see cref="SmtpOptions" /> bound from configuration.
-    ///     The options are validated when the host starts, so a bad configuration fails fast.
-    /// </summary>
     /// <param name="services">The service collection.</param>
-    /// <param name="configuration">
-    ///     The configuration section holding the <see cref="SmtpOptions" /> values, for example
-    ///     <c>configuration.GetSection("Smtp")</c>.
-    /// </param>
-    /// <returns>The same <paramref name="services" /> instance, for chaining.</returns>
-    public static IServiceCollection AddPrettyFluentMail(this IServiceCollection services, IConfiguration configuration)
+    extension(IServiceCollection services)
     {
-        ArgumentNullException.ThrowIfNull(services);
-        ArgumentNullException.ThrowIfNull(configuration);
+        /// <summary>
+        ///     Registers <see cref="IMailSender" /> using <see cref="SmtpOptions" /> bound from configuration.
+        ///     The options are validated when the host starts, so a bad configuration fails fast.
+        /// </summary>
+        /// <param name="configuration">
+        ///     The configuration section holding the <see cref="SmtpOptions" /> values, for example
+        ///     <c>configuration.GetSection("Smtp")</c>.
+        /// </param>
+        /// <returns>The same <paramref name="services" /> instance, for chaining.</returns>
+        public IServiceCollection AddPrettyFluentMail(IConfiguration configuration)
+        {
+            ArgumentNullException.ThrowIfNull(services);
+            ArgumentNullException.ThrowIfNull(configuration);
 
-        // ErrorOnUnknownConfiguration turns a misspelled key (for example "Securty") into a startup error
-        // instead of a silent fall back to a default.
-        AddCore(services).Bind(configuration, static binder => binder.ErrorOnUnknownConfiguration = true);
-        return services;
-    }
+            // ErrorOnUnknownConfiguration turns a misspelled key (for example "Securty") into a startup error
+            // instead of a silent fall back to a default.
+            AddCore(services).Bind(configuration, static binder => binder.ErrorOnUnknownConfiguration = true);
+            return services;
+        }
 
-    /// <summary>
-    ///     Registers <see cref="IMailSender" /> using <see cref="SmtpOptions" /> configured by a delegate.
-    ///     The options are validated when the host starts, so a bad configuration fails fast.
-    /// </summary>
-    /// <param name="services">The service collection.</param>
-    /// <param name="configure">A delegate that configures the options.</param>
-    /// <returns>The same <paramref name="services" /> instance, for chaining.</returns>
-    public static IServiceCollection AddPrettyFluentMail(this IServiceCollection services, Action<SmtpOptions> configure)
-    {
-        ArgumentNullException.ThrowIfNull(services);
-        ArgumentNullException.ThrowIfNull(configure);
+        /// <summary>
+        ///     Registers <see cref="IMailSender" /> using <see cref="SmtpOptions" /> configured by a delegate.
+        ///     The options are validated when the host starts, so a bad configuration fails fast.
+        /// </summary>
+        /// <param name="configure">A delegate that configures the options.</param>
+        /// <returns>The same <paramref name="services" /> instance, for chaining.</returns>
+        public IServiceCollection AddPrettyFluentMail(Action<SmtpOptions> configure)
+        {
+            ArgumentNullException.ThrowIfNull(services);
+            ArgumentNullException.ThrowIfNull(configure);
 
-        AddCore(services).Configure(configure);
-        return services;
+            AddCore(services).Configure(configure);
+            return services;
+        }
     }
 
     private static OptionsBuilder<SmtpOptions> AddCore(IServiceCollection services)
