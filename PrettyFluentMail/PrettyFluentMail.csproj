@@ -27,13 +27,14 @@
 	</ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Mjml.Net" Version="4.9.0" />
-        <PackageReference Include="Scriban" Version="6.2.1" />
+      <None Include="README.md" Pack="true" PackagePath="\" />
+      <Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="README.md" Pack="true" PackagePath="\" />
-      <Content Include="LICENSE.txt" Pack="true" PackagePath="\" />
+	    <PackageReference Include="Mjml.Net" Version="4.15.0" />
+	    <PackageReference Include="Scriban" Version="7.5.0" />
+		<PackageReference Update="Nerdbank.GitVersioning" Version="3.10.94" />
     </ItemGroup>
 
 </Project>
