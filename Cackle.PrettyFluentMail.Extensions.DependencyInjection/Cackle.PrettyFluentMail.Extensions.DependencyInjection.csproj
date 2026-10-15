@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Cackle.PrettyFluentMail.Extensions.DependencyInjection</PackageId>
+    <Title>Cackle.PrettyFluentMail Dependency Injection</Title>
+    <Description>Dependency injection for Cackle.PrettyFluentMail: one AddPrettyFluentMail call registers a validated, thread-safe mail sender in ASP.NET Core, worker services and any .NET generic host.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cackle.PrettyFluentMail\Cackle.PrettyFluentMail.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
+
+</Project>

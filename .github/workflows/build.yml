@@ -1,0 +1,74 @@
+# The file name matters: the nuget.org Trusted Publishing policy is bound to "build.yml".
+name: Build and publish
+
+on:
+  push:
+    branches: [main, "release/**"]
+  pull_request:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Nerdbank.GitVersioning computes the version from git history, so a shallow clone gives a wrong version.
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build --configuration Release
+
+      - name: Test
+        run: dotnet test --configuration Release --no-build
+
+      - name: Pack
+        run: dotnet pack Cackle.PrettyFluentMail.sln --configuration Release --no-build --output artifacts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: artifacts/*
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    # Only a published GitHub Release pushes to nuget.org.
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      # Lets the job request the OIDC token that NuGet/login exchanges for a short-lived API key.
+      id-token: write
+    steps:
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: packages
+          path: artifacts
+
+      - name: Get a short-lived nuget.org API key
+        id: login
+        uses: NuGet/login@v1
+        with:
+          # The nuget.org profile name that owns the Trusted Publishing policy (not an email address).
+          user: ${{ vars.NUGET_USER }}
+
+      - name: Push to nuget.org
+        # Pushes both packages (.snupkg symbol packages are pushed alongside their .nupkg).
+        run: >
+          dotnet nuget push "artifacts/*.nupkg"
+          --source https://api.nuget.org/v3/index.json
+          --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
+          --skip-duplicate

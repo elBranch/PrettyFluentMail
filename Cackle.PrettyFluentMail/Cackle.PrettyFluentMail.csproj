@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Cackle.PrettyFluentMail</PackageId>
+    <Title>Cackle.PrettyFluentMail</Title>
+    <Description>Pretty HTML email from MJML and Scriban templates, composed with a Fluent API and delivered as Mail over SMTP with MailKit.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" />
+    <PackageReference Include="Mjml.Net" />
+    <PackageReference Include="Scriban" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Cackle.PrettyFluentMail.Tests" />
+  </ItemGroup>
+
+</Project>
